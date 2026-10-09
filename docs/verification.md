@@ -47,6 +47,7 @@ Four browser journeys cover registration through verification/login/reset, MFA s
 4. Chromium sent `Origin: null` on POST forms with `no-referrer`; CSRF rejected the requests. `strict-origin` omits token paths/query while preserving origin checks; actual browser registration/reset/MFA now pass.
 5. Fixed 44px controls and mobile recovery-code wrapping. Browser harness fixes included Playwright event-loop/ORM lifetime, Windows media-path handling, and selectors matching actual button/link labels. Early harness failures were not successful test runs.
 6. Initial virtual-environment/browser/audit attempts met Windows sandbox temporary-directory, subprocess-pipe, or network restrictions. Approved isolated execution completed the required local work; no production credentials were used.
+7. Initial Dependabot execution proposed Django 6.1.2 outside the selected 5.2 LTS line. No dependency update was merged. Explicit ignored version ranges now preserve selected Django/allauth maintenance lines; changing those policies requires architectural review.
 
 ## External publication and remaining qualification
 

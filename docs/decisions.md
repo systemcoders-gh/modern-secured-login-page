@@ -16,6 +16,7 @@ Date: 2026-10-09. Scope: safe local construction of Modern Secured Login Page; n
 | ADR-010 | Pin official CI actions to inspected release commits | Limits mutable-action supply-chain risk. Dependabot proposes reviewed updates; hosted workflow success still needs evidence. |
 | ADR-011 | Use `strict-origin` referrer policy | Chromium 153 form POSTs under the earlier `no-referrer` policy sent `Origin: null` and failed Django CSRF validation. Origin-only referrers retain browser compatibility without leaking verification/reset paths. Final real-browser regression belongs in `verification.md`. |
 | ADR-012 | Leave subdomain-wide HSTS and preload off by default | A teaching app cannot assume domain-owner authority over every subdomain/preload. Expected Django deployment warnings are documented; synthetic CI enables the flags only for its test domain. |
+| ADR-013 | Bound automated Django/allauth proposals to selected release lines | Initial Dependabot execution proposed Django 6.1.2 despite the chosen Django 5.2 LTS policy. No update was merged. Explicit ignored version ranges retain 5.2 and allauth 65 maintenance updates; deliberate framework upgrades require architecture, lock and regression review. |
 
 ## Safe work order
 

@@ -5,6 +5,12 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    # Framework upgrades are architectural changes; keep reviewed release lines.
+    ignore:
+      - dependency-name: Django
+        versions: [">=5.3"]
+      - dependency-name: django-allauth
+        versions: [">=66"]
     groups:
       python-maintenance:
         patterns:
