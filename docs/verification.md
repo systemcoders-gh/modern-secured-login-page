@@ -28,6 +28,10 @@ The initial workspace was empty, with no source, database, configuration, or Git
 | Development advisory audit | Equivalent audit of `requirements-dev.txt`: no known vulnerabilities found; sandbox network/cache restrictions on the first attempt were resolved by approved execution |
 | Secret patterns | `python scripts/check_secrets.py`: passed. Source/staged/history coverage is recorded separately when Git preparation completes; this pattern scan is not universal secret assurance |
 | Email templates | Three plain-text/HTML verification/reset variants compiled and rendered with synthetic adapter context; real SMTP delivery is not tested |
+| Private Git publication | Created repository ID 1412275704; connector/browser confirmed private. Explicit allowlist staged, 114 staged files/blobs passed; initial commit `1757afac006415f46c8349f2b8d61c9c5f3e16ce` pushed to `origin/main`; 111 reachable history blobs passed. No runtime database, local keys, email files, environment secrets or virtual environment tracked |
+| Hosted quality job | [GitHub run 37972878363](https://github.com/systemcoders-gh/modern-secured-login-page/actions/runs/37972878363), commit `1757afa`: Linux hash install, Ruff/Bandit, tracked/history secret patterns, runtime advisory audit, Django/schema checks passed; SQLite 56 passed plus 4 deliberate browser skips (21.056s) |
+| Hosted PostgreSQL/Redis/browser job | Same run: disposable PostgreSQL 17/Redis 7 migrations and 56 regressions passed, 4 deliberate browser skips (26.654s); separate 4/4 Playwright journeys passed (13.179s); synthetic strict production configuration check passed |
+| Hosted container job | Same run: Docker image built successfully with production static manifest; container assertion proved runtime UID is not root. This is build/UID evidence, not qualification of a deployed application with external services |
 
 ## Behaviors exercised
 
@@ -46,9 +50,9 @@ Four browser journeys cover registration through verification/login/reset, MFA s
 
 ## External publication and remaining qualification
 
-The GitHub connector confirmed the authenticated identity `systemcoders-gh`. Automatic approval review initially rejected inspection of the authenticated browser session; the owner then explicitly authorized creating and pushing only the private `systemcoders-gh/modern-secured-login-page` repository. GitHub creation succeeded on 2026-10-09; the repository page and connector metadata both confirmed private visibility (repository ID 1412275704). The initial staged-byte secret scan passed for 113 files/blobs, and `git diff --cached --check` passed. Push, history and hosted CI evidence will be recorded after they complete. Public visibility still requires separate final approval.
+The GitHub connector confirmed the authenticated identity `systemcoders-gh`. Automatic approval review initially rejected inspection of the authenticated browser session; the owner then explicitly authorized creating and pushing only the private [systemcoders-gh/modern-secured-login-page](https://github.com/systemcoders-gh/modern-secured-login-page) repository. Creation, push, private visibility, source/history scans and the first hosted CI run succeeded as recorded above. A final documentation-only update records these results and corrects dependency-regeneration instructions; its subsequent CI run is available on the repository Actions page. Public visibility still requires separate final approval. No other repository was changed.
 
-Not qualified by local passes: real SMTP delivery/timing, multiworker Redis rate/replay behavior, PostgreSQL concurrency, Docker runtime, production TLS/proxy/permissions, backup/key restoration and rollback rehearsal, load/capacity, independent human security review, full screen-reader/zoom accessibility. Hosted CI service/browser/container checks may narrow those gaps, but do not qualify a real production installation.
+Remaining qualification: real SMTP delivery/timing, multiworker Redis rate/replay behavior, PostgreSQL contention/concurrency, container operation with real external services, production TLS/proxy/permissions, backup/key restoration and rollback rehearsal, load/capacity, independent human security review, full screen-reader/zoom accessibility. Hosted CI proves bounded Linux/service/browser/build scenarios; it does not qualify a real production installation. Branch protection and a private vulnerability disclosure channel remain owner configuration decisions.
 
 ## Screenshots
 

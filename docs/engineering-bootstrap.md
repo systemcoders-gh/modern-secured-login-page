@@ -30,11 +30,11 @@ Integration review added and verified a guard for password reset/change during i
 
 ## 7. Testing gaps
 
-The practical pyramid is in [testing.md](testing.md). Local suites cover only executed scenarios. Real PostgreSQL/Redis, hosted CI, SMTP delivery and timing, proxy/TLS behavior, restore drills, capacity, independent security review, full screen-reader/zoom and WCAG qualification need their own evidence. A skipped/browser-unavailable/network-audit check remains skipped/unverified; it must not be described as passed. Business-domain tests for absent InfoBusiness modules are out of scope.
+The practical pyramid is in [testing.md](testing.md). Local and hosted Linux suites cover only executed scenarios; `verification.md` now records passing disposable PostgreSQL/Redis, browser and container build/UID checks. SMTP delivery and timing, multiworker/concurrency behavior, proxy/TLS behavior, restore drills, capacity, independent security review, full screen-reader/zoom and WCAG qualification remain open. A skipped/browser-unavailable/network-audit check remains skipped/unverified; it must not be described as passed. Business-domain tests for absent InfoBusiness modules are out of scope.
 
 ## 8. Deployment gaps
 
-The image/workflow are source definitions until built/executed. No live hosting, service account, branch protection, production approval environment, DNS, TLS, installation registry, deployment lock executor, or rollback automation is configured here. Hostinger Python/Django requires a suitable VPS according to [Hostinger's support documentation](https://www.hostinger.com/support/which-programming-languages-and-frameworks-are-supported-at-hostinger/); no existing plan was inspected. See [deployment.md](deployment.md) for approval-gated staging/release steps.
+Hosted CI built the image and confirmed its non-root runtime UID; `verification.md` records the bounded result. No live hosting, service account, branch protection, production approval environment, DNS, TLS, installation registry, deployment lock executor, or rollback automation is configured here. Hostinger Python/Django requires a suitable VPS according to [Hostinger's support documentation](https://www.hostinger.com/support/which-programming-languages-and-frameworks-are-supported-at-hostinger/); no existing plan was inspected. See [deployment.md](deployment.md) for approval-gated staging/release steps.
 
 ## 9. Database and data-safety findings
 
@@ -59,11 +59,11 @@ Figma, container/cloud administration, email, issue-management, and observabilit
 
 ## 11. Tools successfully configured
 
-The local Python virtual environment contains the versions listed in section 2. Project definitions configure Ruff, Bandit command scope, hash locks, Playwright test entry point, a local secret guard, GitHub CI/Dependabot, and Docker packaging. A file being present is not a successful hosted configuration. `verification.md` records executed installations/checks. No new MCP server/plugin, external monitoring account, scheduled task, or production service was installed by this documentation work.
+The local Python virtual environment contains the versions listed in section 2. Project definitions configure Ruff, Bandit command scope, hash locks, Playwright test entry point, a local secret guard, GitHub CI/Dependabot, and Docker packaging. The approved private repository exists and hosted quality, PostgreSQL/Redis/browser, and container checks passed as recorded in `verification.md`. A file being present alone is not a successful hosted configuration. No new MCP server/plugin, external monitoring account, scheduled task, or production service was installed by this work.
 
 ## 12. Tools requiring approval or credentials
 
-Private GitHub creation/push depends on authenticated scoped access. Public visibility explicitly requires owner approval. Staging/production hosting, domain/TLS/SMTP credentials, PostgreSQL/Redis services, observability destinations, managed backups, and any paid service require owner configuration/approval. Read-only local command discovery found Git/Python/`py`/`rg`, but did not find `gh` or `docker` on PATH; install neither silently. Docker CI may build on its disposable hosted runner once repository execution is available.
+Private GitHub creation/push was explicitly approved and completed using existing authenticated access. Public visibility explicitly requires separate owner approval. Staging/production hosting, domain/TLS/SMTP credentials, PostgreSQL/Redis services, observability destinations, managed backups, and any paid service require owner configuration/approval. Read-only local command discovery found Git/Python/`py`/`rg`, but did not find `gh` or `docker` on PATH; neither was installed. Docker CI built on its disposable hosted runner.
 
 ## 13. Files created or modified
 

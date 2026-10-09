@@ -22,10 +22,10 @@ No production credentials, real users, email files, recovery links, MFA keys, da
 With the development environment installed:
 
 ```powershell
-.\.venv\Scripts\python.exe -m piptools compile --generate-hashes --output-file requirements.txt requirements.in
-.\.venv\Scripts\python.exe -m piptools compile --generate-hashes --allow-unsafe --output-file requirements-dev.txt requirements-dev.in
+.\.venv\Scripts\python.exe -m piptools compile --generate-hashes --allow-unsafe --strip-extras --no-emit-index-url --output-file requirements.txt requirements.in
+.\.venv\Scripts\python.exe -m piptools compile --generate-hashes --allow-unsafe --strip-extras --no-emit-index-url --output-file requirements-dev.txt requirements-dev.in
 ```
 
-Review platform markers, including Linux-only Gunicorn. A Windows resolver may omit a dependency that is needed in Linux CI or the container; validate the Linux installation before release. Do not hand-edit generated hashes. Audit and rerun authentication/security regressions after updates. Check licenses against MIT distribution obligations and retain required notices.
+Review platform markers and Linux runtime dependencies such as Gunicorn. A Windows resolver may omit a dependency that is needed in Linux CI or the container; validate the Linux installation before release. Keep index URLs out of generated files and ensure extras are resolved to explicit hash-locked dependencies. Do not hand-edit generated hashes. Audit and rerun authentication/security regressions after updates. Check licenses against MIT distribution obligations and retain required notices.
 
 The development lock uses `--allow-unsafe` to hash-lock resolver/build tooling such as setuptools when included by the dependency graph; otherwise `--require-hashes` can fail on an unpinned dependency. This pip-tools flag is a package-category policy, not permission to skip security review.

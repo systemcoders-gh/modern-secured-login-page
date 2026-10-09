@@ -20,6 +20,8 @@ This is a standalone educational project. It does not connect to InfoBusiness, c
 
 ![Mobile login](docs/screenshots/login-mobile.png)
 
+![Protected welcome dashboard](docs/screenshots/dashboard-desktop.png)
+
 Screenshots use synthetic accounts only. Browser verification details, including tested widths and limits, belong in [the verification record](docs/verification.md).
 
 ## Stack and layout
@@ -84,7 +86,7 @@ $env:SKIP_BROWSER_TESTS = '0'
 .\.venv\Scripts\python.exe manage.py test tests.test_browser
 ```
 
-Chromium is a development test dependency. Its installer downloads a browser; it is not needed to run the app. Read [docs/testing.md](docs/testing.md) for test isolation, PostgreSQL checks, and interpretation of skipped checks. CI definitions are provided; a local pass does not establish that hosted CI or real SMTP delivery passed.
+Chromium is a development test dependency. Its installer downloads a browser; it is not needed to run the app. Read [docs/testing.md](docs/testing.md) for test isolation, PostgreSQL checks, and interpretation of skipped checks. The [first hosted CI run](https://github.com/systemcoders-gh/modern-secured-login-page/actions/runs/37972878363) passed SQLite, PostgreSQL/Redis, browser, static/security, and container build checks. Exact counts and remaining limits are recorded in [docs/verification.md](docs/verification.md); real SMTP delivery and production hosting remain unqualified.
 
 ## What the protections do
 
@@ -100,6 +102,6 @@ This project is not a certification of production security or WCAG compliance. P
 
 ## Contribute and publish
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [AGENTS.md](AGENTS.md). The intended repository is `systemcoders-gh/modern-secured-login-page`, initially private. Public visibility requires the owner's explicit final approval after reviewing code, history, secrets, tests, and CI. [docs/deployment.md](docs/deployment.md#private-github-preparation) includes owner commands if publication access is unavailable.
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [AGENTS.md](AGENTS.md). The repository is [systemcoders-gh/modern-secured-login-page](https://github.com/systemcoders-gh/modern-secured-login-page), currently private. Public visibility requires the owner's explicit final approval after reviewing code, history, secrets, tests, and CI. [docs/deployment.md](docs/deployment.md#private-github-preparation) includes owner commands for future source synchronization.
 
 Licensed under [MIT](LICENSE). Copyright 2026 System Coders.
