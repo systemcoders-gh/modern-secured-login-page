@@ -4,7 +4,7 @@ Date: 2026-10-09. The requested generic InfoBusiness engineering bootstrap is ad
 
 ## 1. Executive summary
 
-A new standalone Django authentication demonstration is implemented locally with documented engineering instructions, role handoffs, a threat model, tests, quality/security tooling, CI definitions, and a production-oriented container/deployment plan. Production changes and public repository visibility remain separate explicit approval gates. Actual execution and publication status live in [verification.md](verification.md); no successful test or hosted action is inferred merely from a definition existing.
+A new standalone Django authentication demonstration is implemented locally with documented engineering instructions, role handoffs, a threat model, tests, quality/security tooling, CI definitions, and a production-oriented container/deployment plan. The repository was first created and reviewed privately. On 2026-10-09, the owner explicitly approved public visibility for only `systemcoders-gh/modern-secured-login-page`; repository Settings, connector metadata, and an unauthenticated GitHub API read subsequently confirmed public visibility/readability. Production changes remain a separate approval gate. Actual execution and publication status live in [verification.md](verification.md); no successful test or hosted action is inferred merely from a definition existing.
 
 ## 2. Detected technology stack
 
@@ -59,11 +59,11 @@ Figma, container/cloud administration, email, issue-management, and observabilit
 
 ## 11. Tools successfully configured
 
-The local Python virtual environment contains the versions listed in section 2. Project definitions configure Ruff, Bandit command scope, hash locks, Playwright test entry point, a local secret guard, GitHub CI/Dependabot, and Docker packaging. The approved private repository exists and hosted quality, PostgreSQL/Redis/browser, and container checks passed as recorded in `verification.md`. A file being present alone is not a successful hosted configuration. No new MCP server/plugin, external monitoring account, scheduled task, or production service was installed by this work.
+The local Python virtual environment contains the versions listed in section 2. Project definitions configure Ruff, Bandit command scope, hash locks, Playwright test entry point, a local secret guard, GitHub CI/Dependabot, and Docker packaging. The repository was created privately, and hosted quality, PostgreSQL/Redis/browser, and container checks passed as recorded in `verification.md`, including final pre-publication run 37973534614 at commit `fdf6c4aa4cb95424a291dc0b49ec08a2c74b40a1`. Public visibility was separately approved and verified on 2026-10-09 through repository Settings, connector metadata, and an unauthenticated API read, retaining repository ID 1412275704. The later publication-status documentation update's commit/push and subsequent CI are not claimed until recorded. A file being present alone is not a successful hosted configuration. No new MCP server/plugin, external monitoring account, scheduled task, or production service was installed by this work.
 
 ## 12. Tools requiring approval or credentials
 
-Private GitHub creation/push was explicitly approved and completed using existing authenticated access. Public visibility explicitly requires separate owner approval. Staging/production hosting, domain/TLS/SMTP credentials, PostgreSQL/Redis services, observability destinations, managed backups, and any paid service require owner configuration/approval. Read-only local command discovery found Git/Python/`py`/`rg`, but did not find `gh` or `docker` on PATH; neither was installed. Docker CI built on its disposable hosted runner.
+Private GitHub creation/push was explicitly approved and completed using existing authenticated access. On 2026-10-09, the owner separately approved changing only `systemcoders-gh/modern-secured-login-page` to public; the visibility change completed and was verified through repository Settings, connector metadata, and an unauthenticated API read. Staging/production hosting, domain/TLS/SMTP credentials, PostgreSQL/Redis services, observability destinations, managed backups, and any paid service still require owner configuration/approval. Read-only local command discovery found Git/Python/`py`/`rg`, but did not find `gh` or `docker` on PATH; neither was installed. Docker CI built on its disposable hosted runner.
 
 ## 13. Files created or modified
 
@@ -89,29 +89,29 @@ Use one approved immutable artifact and a registry/secret references outside app
 
 | Period | Work / completion evidence |
 | --- | --- |
-| Days 1–7 | Review standalone source/history, resolve local test/security findings, verify private hosted CI and Linux PostgreSQL/Redis/browser/container jobs, enable required review and private vulnerability reporting |
+| Days 1–7 | Maintain reviewed source/history and passing hosted CI/Linux PostgreSQL/Redis/browser/container jobs, retain verified publication evidence, enable required review and private vulnerability reporting |
 | Days 8–14 | Owner-approved isolated staging: exact proxy/TLS/cache controls, SMTP delivery/timing, recovery/MFA/session journeys, measured mobile/keyboard/assistive-technology checks |
 | Days 15–21 | Prove matched backup/restore and rollback, benchmark Argon2/recovery/SMTP/DB under realistic synthetic load, define RPO/RTO/SLIs/retention and minimal alerts |
-| Days 22–30 | Independent security/code review, dependency/license/supply-chain review, finalize honest release notes/limitations, obtain explicit public approval; separately evaluate whether a live demo is warranted |
+| Days 22–30 | Independent security/code review, dependency/license/supply-chain review, finalize honest release notes/limitations; separately evaluate whether an approved live demo is warranted |
 
 Production/multi-domain work is contingent on separate scope/approval, not an automatic extension of this roadmap.
 
 ## 19. Five highest-value next actions
 
 1. Resolve and record every remaining local/hosted verification gap at the exact reviewed commit.
-2. Review the private repository's full source/history, screenshots, branch protection, and disclosure channel.
+2. Maintain review of the public repository's source/history, screenshots, branch protection, and disclosure channel.
 3. Qualify approved staging SMTP/TLS/proxy/shared-cache authentication behavior with synthetic accounts.
 4. Prove backup/key restore and rollback, then measure realistic authentication/recovery capacity.
-5. Complete independent security/accessibility review before approving public publication or real-account hosting.
+5. Complete independent security/accessibility review before real-account hosting; preserve the published reference's explicit limitations.
 
 ## 20. Exact next-phase approval requests
 
-- **Public publication:** approve changing only `systemcoders-gh/modern-secured-login-page` from private to public after its source/history/CI/report review. No other System Coders repository is involved.
+- **Public publication — completed:** on 2026-10-09, the owner approved changing only `systemcoders-gh/modern-secured-login-page` from private to public after the private review. The change completed and repository Settings, connector metadata, and an unauthenticated API read verified public visibility/readability with unchanged repository ID 1412275704. No other System Coders repository is involved, and no additional publication approval is requested here.
 - **Staging deployment:** approve an exact host/domain/project, runtime/services, credential channel, cost cap, synthetic account scope, and rollback plan. No production data or credentials in tests.
 - **Production:** a separate reviewed installation/version/change window approval, verified matched backup/restore, health/smoke criteria, and rollback authority is required.
 - **Additional tools:** only if a documented capability gap remains, approve the named official service/package, exact permissions, costs, privacy/retention, and removal procedure.
 
-These are documented future gates, not prompts that imply work has been published/deployed or that credentials should be pasted into chat.
+The publication approval and completed visibility verification are recorded separately from deployment readiness. The remaining requests are future deployment/tool gates, not claims that an application was deployed or instructions to paste credentials into chat.
 
 ## Engineering roles and handoffs
 

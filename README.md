@@ -102,6 +102,6 @@ This project is not a certification of production security or WCAG compliance. P
 
 ## Contribute and publish
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [AGENTS.md](AGENTS.md). The repository is [systemcoders-gh/modern-secured-login-page](https://github.com/systemcoders-gh/modern-secured-login-page), currently private. Public visibility requires the owner's explicit final approval after reviewing code, history, secrets, tests, and CI. [docs/deployment.md](docs/deployment.md#private-github-preparation) includes owner commands for future source synchronization.
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [AGENTS.md](AGENTS.md). The public repository is [systemcoders-gh/modern-secured-login-page](https://github.com/systemcoders-gh/modern-secured-login-page). It was created privately for source/history and test review. On **2026-10-09**, the owner explicitly approved changing only this repository to public; repository Settings, connector metadata, and an unauthenticated GitHub API read subsequently confirmed public visibility. See [docs/verification.md](docs/verification.md) for publication evidence. This approval does not authorize hosting a live application or changing any other repository. [docs/deployment.md](docs/deployment.md#private-github-preparation) includes owner commands for future source synchronization.
 
 Licensed under [MIT](LICENSE). Copyright 2026 System Coders.
