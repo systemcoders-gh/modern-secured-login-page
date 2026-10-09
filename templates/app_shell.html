@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block page %}
+<div class="app-layout">
+  <header class="app-header"><div class="app-header-inner">{% include 'includes/brand.html' %}<nav class="main-nav" aria-label="Main navigation"><a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}aria-current="page"{% endif %}>Overview</a><a href="{% url 'profile' %}" {% if request.resolver_match.url_name == 'profile' %}aria-current="page"{% endif %}>Account</a><a href="{% url 'sessions' %}" {% if request.resolver_match.url_name == 'sessions' %}aria-current="page"{% endif %}>Sessions</a></nav><div class="header-actions">{% include 'includes/theme_toggle.html' %}<a class="button button-quiet button-small" href="{% url 'account_logout' %}">Sign out <span aria-hidden="true">↗</span></a></div></div></header>
+  <main class="app-content" id="main-content">{% include 'includes/messages.html' %}{% block content %}{% endblock %}</main>
+  <footer class="app-footer"><span>Modern Secured Login Page</span><a href="{% url 'about' %}">Demo &amp; privacy</a><a href="https://systemcoders.net" rel="noopener noreferrer">Made by System Coders <span aria-hidden="true">↗</span></a></footer>
+</div>
+{% endblock %}

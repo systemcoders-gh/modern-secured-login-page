@@ -1,0 +1,141 @@
+name: Authentication quality and security
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      APP_ENV: development
+      SKIP_BROWSER_TESTS: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install locked dependencies
+        run: python -m pip install --require-hashes -r requirements-dev.txt
+      - name: Formatting and static analysis
+        run: |
+          python -m ruff check .
+          python -m ruff format --check .
+          python -m bandit -r accounts config -x accounts/migrations
+      - name: Source and history secret patterns
+        run: |
+          python scripts/check_secrets.py --tracked
+          python scripts/check_secrets.py --history
+      - name: Dependency advisory audit
+        run: python -m pip_audit -r requirements.txt --no-deps --disable-pip
+      - name: Django and migration checks
+        run: |
+          python manage.py check
+          python manage.py makemigrations --check --dry-run
+      - name: SQLite behavior and security regressions
+        run: python manage.py test tests --verbosity 2
+
+  postgres-and-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: auth_demo
+          POSTGRES_USER: auth_test
+          POSTGRES_PASSWORD: ci-only-disposable # secret-scan: synthetic fixture
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U auth_test -d auth_demo"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      APP_ENV: development
+      DATABASE_URL: postgresql://auth_test:ci-only-disposable@127.0.0.1:5432/auth_demo # secret-scan: synthetic fixture
+      REDIS_URL: redis://127.0.0.1:6379/0
+      SKIP_BROWSER_TESTS: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install locked dependencies
+        run: python -m pip install --require-hashes -r requirements-dev.txt
+      - name: PostgreSQL migrations and regression suite
+        run: |
+          python manage.py migrate --noinput
+          python manage.py test tests --verbosity 2
+      - name: Install test browser
+        run: python -m playwright install --with-deps chromium
+      - name: Browser journeys
+        env:
+          SKIP_BROWSER_TESTS: "0"
+        run: python manage.py test tests.test_browser --verbosity 2
+      - name: Validate production settings without deploying
+        run: |
+          python - <<'PY'
+          import os
+          import secrets
+          import subprocess
+          from cryptography.fernet import Fernet
+
+          env = os.environ.copy()
+          env.update(
+              APP_ENV="production",
+              DJANGO_SECRET_KEY=secrets.token_urlsafe(64),
+              MFA_ENCRYPTION_KEYS=Fernet.generate_key().decode(),
+              APP_ORIGIN="https://auth.example.test",
+              ALLOWED_HOSTS="auth.example.test",
+              CSRF_TRUSTED_ORIGINS="https://auth.example.test",
+              EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend",
+              EMAIL_HOST="smtp.example.test",
+              EMAIL_PORT="587",
+              EMAIL_USE_TLS="1",
+              DEFAULT_FROM_EMAIL="demo@auth.example.test",
+              HSTS_INCLUDE_SUBDOMAINS="1",
+              HSTS_PRELOAD="1",
+          )
+          subprocess.run(
+              ["python", "manage.py", "check", "--deploy", "--fail-level", "WARNING"],
+              env=env,
+              check=True,
+          )
+          PY
+
+  container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build runtime image without deployment credentials
+        run: docker build --tag modern-secured-login-page:ci .
+      - name: Confirm non-root runtime
+        run: docker run --rm --entrypoint python modern-secured-login-page:ci -c "import os; assert os.getuid() != 0"

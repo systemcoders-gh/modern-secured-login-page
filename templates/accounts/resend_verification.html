@@ -1,0 +1,5 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Resend email verification{% endblock %}
+{% block content %}
+<div class="eyebrow">Email verification</div><h1>A fresh confirmation.</h1><p class="form-intro">Enter your email. If an account needs verification, we'll send a new confirmation link.</p><form method="post">{% csrf_token %}{% include 'includes/form_fields.html' %}<button class="button button-primary button-full" type="submit" data-loading-label="Sending request…">Resend verification link <span aria-hidden="true">→</span></button></form><a class="auth-return" href="{% url 'account_login' %}"><span aria-hidden="true">←</span> Back to sign in</a>
+{% endblock %}

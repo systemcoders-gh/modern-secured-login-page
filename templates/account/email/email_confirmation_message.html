@@ -1,0 +1,10 @@
+{% extends 'account/email/base_message.html' %}
+{% block title %}Confirm your email{% endblock %}
+{% block content %}
+<h1 style="margin:0 0 18px;font-size:26px;line-height:1.25;letter-spacing:-0.8px;">A quick confirmation.</h1>
+<p style="margin:0 0 22px;">Someone requested to use this email address for a Modern Secured Login Page account. Confirm that this address belongs to you to continue.</p>
+{% if code %}<p style="margin:0 0 8px;">Your verification code:</p><p style="padding:14px;background:#eef0ff;color:#3542c2;font-size:22px;font-family:Consolas,monospace;">{{ code }}</p>{% else %}<p style="margin:0 0 24px;"><a href="{{ activate_url }}" style="display:inline-block;padding:12px 22px;border-radius:8px;background:#4452d9;color:#ffffff;text-decoration:none;font-weight:700;">Confirm my email</a></p>{% endif %}
+<p style="margin:0 0 22px;color:#607184;">This verification link expires in <strong>24 hours</strong> and can be used only once. If it expires, request another verification email from the application.</p>
+<p style="margin:0 0 22px;padding:14px 16px;background:#f0f4fa;border-left:3px solid #adbdff;color:#142a3a;font-size:12px;">If you did not request this email, you can ignore it. Your address will not be verified unless you confirm it.</p>
+{% if not code %}<p style="margin:0 0 6px;font-size:11px;color:#607184;">If the button doesn't work, copy this link into your browser:</p><p style="margin:0;font-size:11px;overflow-wrap:anywhere;word-break:break-all;"><a href="{{ activate_url }}" style="color:#4452d9;">{{ activate_url }}</a></p>{% endif %}
+{% endblock %}

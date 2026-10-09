@@ -1,0 +1,5 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Verify your sign-in{% endblock %}
+{% block content %}
+<div class="eyebrow">One more check</div><h1>It's really you.</h1><p class="form-intro">Enter the six-digit code from your authenticator app, or use one of your saved recovery codes.</p><form method="post" action="{% url 'mfa_authenticate' %}">{% csrf_token %}{% include 'includes/form_fields.html' %}<button class="button button-primary button-full" type="submit" data-loading-label="Verifying code…">Verify &amp; sign in <span aria-hidden="true">→</span></button></form><form method="post" action="{% url 'account_logout' %}">{% csrf_token %}<input type="hidden" name="next" value="{% url 'account_login' %}"><button class="button button-secondary button-full" type="submit">Cancel sign-in</button></form><p class="form-footnote">A recovery code works once. Never share your codes.</p>
+{% endblock %}

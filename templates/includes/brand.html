@@ -1,0 +1,4 @@
+<a class="brand" href="{% if user.is_authenticated %}{% url 'dashboard' %}{% else %}{% url 'account_login' %}{% endif %}" aria-label="Modern Secured Login Page home">
+  <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 28 32" fill="none"><path d="M14 2 25 6v10c0 7-8 12-11 14C11 28 3 23 3 16V6L14 2Z" stroke="currentColor" stroke-width="2"/><path d="m9 15 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  <span class="brand-text">Modern Secured<span>by System Coders</span></span>
+</a>

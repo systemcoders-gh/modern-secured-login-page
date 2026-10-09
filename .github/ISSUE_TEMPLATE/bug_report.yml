@@ -1,0 +1,25 @@
+name: Bug report
+description: Report a reproducible application bug using synthetic data.
+body:
+  - type: markdown
+    attributes:
+      value: "Report security vulnerabilities privately using SECURITY.md. Do not include passwords, active reset links, recovery codes, real accounts, or secrets."
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps and expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Actual result and redacted environment details
+      description: Browser, OS, local/staging, and harmless error message. Avoid real account identifiers.
+    validations:
+      required: true

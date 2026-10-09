@@ -1,0 +1,7 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Verify your email{% endblock %}
+{% block content %}
+<div class="eyebrow">Email verification</div>
+{% if confirmation and can_confirm %}<h1>A quick confirmation.</h1><p>Confirm <strong>{{ confirmation.email_address.email }}</strong> as your account email address.</p><form method="post" action="{% url 'account_confirm_email' confirmation.key %}">{% csrf_token %}{{ redirect_field }}<button class="button button-primary button-full" type="submit" data-loading-label="Verifying email…">Verify email <span aria-hidden="true">→</span></button></form>
+{% else %}<h1>This link is unavailable.</h1><p>The verification link has expired, is invalid, or has already been used. Sign in to continue or request another message.</p><a class="button button-primary button-full" href="{% url 'account_login' %}">Go to sign in <span aria-hidden="true">→</span></a>{% endif %}
+{% endblock %}

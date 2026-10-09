@@ -1,0 +1,3 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Confirm it's you{% endblock %}
+{% block content %}<div class="eyebrow">A security check</div><h1>Confirm it's you.</h1><p class="form-intro">Enter your password before continuing to this sensitive account action.</p><form method="post" action="{% url 'account_reauthenticate' %}">{% csrf_token %}{{ redirect_field }}{% include 'includes/form_fields.html' %}<button class="button button-primary button-full" type="submit" data-loading-label="Confirming…">Confirm &amp; continue <span aria-hidden="true">→</span></button></form><a class="auth-return" href="{% url 'profile' %}"><span aria-hidden="true">←</span> Back to account settings</a>{% endblock %}

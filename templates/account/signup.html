@@ -1,0 +1,8 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Create an account{% endblock %}
+{% block content %}
+<div class="eyebrow">Start exploring</div><h1>A place of your own.</h1>
+<p class="form-intro">Create your demo account. Already registered? <a href="{% url 'account_login' %}">Sign in</a></p>
+<form method="post" action="{% url 'account_signup' %}">{% csrf_token %}{% include 'includes/form_fields.html' %}{{ redirect_field }}<button class="button button-primary button-full" type="submit" data-loading-label="Creating account…">Create account <span aria-hidden="true">→</span></button></form>
+<p class="form-footnote">We'll send a link to verify your email.<br>Use a unique password and read our <a href="{% url 'about' %}">demo &amp; privacy notes</a>.</p>
+{% endblock %}

@@ -1,0 +1,3 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Access unavailable{% endblock %}
+{% block content %}<div class="error-code">403 · ACCESS UNAVAILABLE</div><h1>This door is closed.</h1><p>This request couldn't be authorized. Return to your account or sign in again to continue.</p><a class="button button-primary button-full" href="{% url 'account_login' %}">Go to sign in <span aria-hidden="true">→</span></a>{% endblock %}

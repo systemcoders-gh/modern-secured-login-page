@@ -1,0 +1,8 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Two-factor authentication{% endblock %}
+{% block content %}
+<div class="eyebrow">Sign-in protection</div><h1>A second check.</h1><p class="form-intro">An authenticator app adds a one-time code to your sign-in. Your password remains the first step.</p>
+<section class="panel"><h2>Authenticator app</h2>{% if authenticators.totp %}<p class="panel-description">Two-factor authentication is enabled for your account.</p><span class="status-badge success">Enabled</span><div class="button-group"><a class="button button-danger" href="{% url 'mfa_deactivate_totp' %}">Disable authenticator</a></div>{% else %}<p class="panel-description">Connect an authenticator app on your phone to get started.</p><a class="button button-primary button-full" href="{% url 'mfa_activate_totp' %}">Set up authenticator <span aria-hidden="true">→</span></a>{% endif %}</section>
+{% if authenticators.totp %}<section class="panel"><h2>Recovery codes</h2><p class="panel-description">Keep single-use codes somewhere safe so you can sign in if your authenticator is unavailable.</p><a class="button button-secondary button-full" href="{% url 'recovery_codes' %}">Manage recovery codes <span aria-hidden="true">→</span></a></section>{% endif %}
+<a class="auth-return" href="{% url 'profile' %}"><span aria-hidden="true">←</span> Back to account settings</a>
+{% endblock %}

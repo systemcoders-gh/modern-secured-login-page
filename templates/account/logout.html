@@ -1,0 +1,5 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Sign out{% endblock %}
+{% block content %}
+<div class="eyebrow">End this session</div><h1>See you next time.</h1><p>Ready to sign out of this browser? Your account settings will be here when you return.</p><form method="post" action="{% url 'account_logout' %}">{% csrf_token %}{{ redirect_field }}<button class="button button-primary button-full" type="submit" data-loading-label="Signing out…">Sign out <span aria-hidden="true">→</span></button></form><a class="auth-return" href="{% url 'dashboard' %}"><span aria-hidden="true">←</span> Stay signed in</a>
+{% endblock %}

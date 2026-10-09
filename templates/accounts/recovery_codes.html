@@ -1,0 +1,10 @@
+{% extends 'app_shell.html' %}
+{% block head_title %}Recovery codes{% endblock %}
+{% block content %}
+<div class="page-heading"><div><div class="eyebrow">A backup way in</div><h1>Your recovery codes.</h1><p>Use a recovery code if you lose access to your authenticator. Each code works once.</p></div></div>
+<section class="panel reading-content">
+{% if codes %}<div class="notice notice-success"><strong>Your new codes are ready.</strong> Save them in your password manager or another safe place. These codes are shown only on this page and won't be available after you leave.</div><ul class="recovery-grid" aria-label="New recovery codes">{% for code in codes %}<li>{{ code }}</li>{% endfor %}</ul><p>Your previous recovery codes no longer work.</p>{% else %}<h2>{{ count }} recovery code{{ count|pluralize }} available</h2><p>For your protection, stored codes cannot be displayed again. Generate a new set if you haven't saved your current codes.</p>{% endif %}
+<div class="danger-zone"><div><h3>Replace recovery codes</h3><p>Generating a new set immediately invalidates every previous code.</p></div><form method="post">{% csrf_token %}{{ form.action }}{% include 'includes/form_errors.html' %}<button class="button button-danger" type="submit" data-loading-label="Generating codes…">{% if count %}Regenerate{% else %}Generate{% endif %} recovery codes</button></form></div>
+<a class="auth-return" href="{% url 'mfa_index' %}"><span aria-hidden="true">←</span> Back to two-factor settings</a>
+</section>
+{% endblock %}

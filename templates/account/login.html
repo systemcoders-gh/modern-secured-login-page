@@ -1,0 +1,15 @@
+{% extends 'auth_shell.html' %}
+{% block head_title %}Sign in{% endblock %}
+{% block content %}
+<div class="eyebrow">Account access</div>
+<h1>Welcome back.</h1>
+<p class="form-intro">Enter your details to continue.<br>New here? <a class="inline-link" href="{% url 'account_signup' %}">Create an account <span aria-hidden="true">↗</span></a></p>
+<form method="post" action="{% url 'account_login' %}" class="login-form">
+  {% csrf_token %}{% include 'includes/form_errors.html' %}
+  {% for field in form %}{% if field.name != 'remember' %}{% include 'includes/form_field.html' with hide_help=True %}{% endif %}{% endfor %}
+  <div class="form-options"><div class="checkbox-row">{{ form.remember }}<label for="{{ form.remember.id_for_label }}">Remember me</label></div><a href="{% url 'account_reset_password' %}">Forgot password?</a></div>
+  {{ redirect_field }}
+  <button class="button button-primary button-full" type="submit" data-loading-label="Signing in…">Sign in <span aria-hidden="true">→</span></button>
+</form>
+<p class="form-footnote secure-caption"><svg viewBox="0 0 18 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m9 1 7 3v6c0 4-5 7-7 9-2-2-7-5-7-9V4l7-3Z"/><path d="m5.5 10 2.5 2.5 4.5-5"/></svg> Your account, protected by server-side checks.</p>
+{% endblock %}

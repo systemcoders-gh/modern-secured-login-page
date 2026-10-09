@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block page %}
+<div class="auth-layout">
+  <aside class="auth-story" aria-label="About this demonstration">
+    {% include 'includes/brand.html' %}
+    <div class="story-body">
+      <div class="story-eyebrow"><span class="status-dot"></span> An open-source authentication demo</div>
+      <h2>Your account.<br><span>Your control.</span></h2>
+      <p>A considered place to sign in. Explore real account protection, from your first login to your second factor.</p>
+      <div class="vault-art" aria-hidden="true">
+        <div class="vault-orbit orbit-one"></div><div class="vault-orbit orbit-two"></div><div class="vault-orbit orbit-three"></div>
+        <div class="orbit-star star-one"></div><div class="orbit-star star-two"></div>
+        <div class="vault-card"><span class="vault-card-top">SYSTEM CODERS<span class="vault-led"></span></span><div class="vault-lock"><div class="lock-shackle"></div><div class="lock-body"><span></span></div></div><div class="vault-line"></div><div class="vault-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="vault-card-bottom">ACCESS IS PERSONAL</span></div>
+        <div class="orbit-label"><span class="mini-shield">✓</span> You hold the key</div>
+      </div>
+    </div>
+    <div class="story-footer"><span>Built to learn. Made to explore.</span><a href="{% url 'about' %}">About the demo <span aria-hidden="true">↗</span></a></div>
+  </aside>
+  <div class="auth-main">
+    <div class="auth-topbar"><span class="mobile-brand">System Coders</span>{% include 'includes/theme_toggle.html' %}</div>
+    <main class="auth-content allauth-layout" id="main-content">
+      {% include 'includes/messages.html' %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="auth-footer">An educational project by <a href="https://systemcoders.net" rel="noopener noreferrer">System Coders</a><span class="footer-divider">·</span><a href="{% url 'about' %}">Demo &amp; privacy</a></footer>
+  </div>
+</div>
+{% endblock %}
