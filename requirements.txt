@@ -161,10 +161,6 @@ cffi==2.1.1 \
     # via
     #   argon2-cffi-bindings
     #   cryptography
-colorama==0.4.6 \
-    --hash=sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44 \
-    --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
-    # via qrcode
 cryptography==50.0.2 \
     --hash=sha256:0ddc924c04591c2811ca024d62ecad4f7f6f08af8939c211438f48a16bd23602 \
     --hash=sha256:0ec5f09541743261e66e291b4a0cbf0fb2997aeaab6d9e9c740b9dba1b58d1c2 \
@@ -239,9 +235,9 @@ django==5.2.18 \
     #   -r requirements.in
     #   dj-database-url
     #   django-allauth
-django-allauth==65.19.7 \
-    --hash=sha256:8899377f38afabf10445c9ee2f808a730304ca8aecc540657d51a8b3928283d6 \
-    --hash=sha256:c7749551b659ca954e483f6f634cd0c262d65dd8144f5219b3a31cba0426e981
+django-allauth==65.20.0 \
+    --hash=sha256:54019cd2860eef707eaaef241a6598149d2d3b6bd7e78d175089b27d57cd8d83 \
+    --hash=sha256:83e22cb65b742d28c49e22a2dbfb475d5ceabc844f16b7a8a5c6a2676e612e9e
     # via -r requirements.in
 fido2==2.2.1 \
     --hash=sha256:85787428a94c3f8eaf72f0ff30afba983b559a1b1b795c93318c81b4ad4062c4 \
@@ -343,12 +339,6 @@ sqlparse==0.6.0 \
     --hash=sha256:113c35c75365ab9cc9c7231d68c6428fb11c085fc8e9eb1ad659b7ddbf6cd2b9 \
     --hash=sha256:b861c0288ce2fa56209a9a6412d2e066ac664b3873b89c26c9d8415e8e32996f
     # via django
-tzdata==2026.5 \
-    --hash=sha256:8cc73c0a0bfca7dbfa59235d60b2eff82231dee33f53d206db1acd9173cfc0a7 \
-    --hash=sha256:b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac
-    # via
-    #   django
-    #   psycopg
 whitenoise==6.12.0 \
     --hash=sha256:f723ebb76a112e98816ff80fcea0a6c9b8ecde835f8ddda25df7a30a3c2db6ad \
     --hash=sha256:fc5e8c572e33ebf24795b47b6a7da8da3c00cff2349f5b04c02f28d0cc5a3cc2
